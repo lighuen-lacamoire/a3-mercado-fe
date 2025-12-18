@@ -10,7 +10,6 @@
     "debug:test": "sh -ac '. ./.env.test; vite --port 3004 --mode development'",
     "start": "serve -s -n -l 3004 build",
     "start:dev": "vite build && vite --port 3004 --mode development",
-    "deploy:iis": "sh -ac '. ./.env.local; vite build' && serve -s -n -l 3004 build",
     "build": "tsc -b && vite build",
     "build:development": "tsc --noEmit && env-cmd -f ./.env.development vite build --mode development",
     "build:test": "tsc --noEmit && env-cmd -f ./.env.test vite build --mode development",
@@ -21,6 +20,7 @@
   },
   "dependencies": {
     "axios": "^1.13.2",
+    "env-cmd": "^11.0.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
