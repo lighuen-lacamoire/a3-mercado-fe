@@ -1,20 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/App.css";
+import { instrumentsListRequest } from "@/backendApi/instrumentsService";
 
 const App = () => {
-  const [count, setCount] = useState(0);
+  const [instrumentsList, setInstrumentsList] = useState<InstrumentRowDto[]>();
 
+  const requestInstruments = async () => {
+    instrumentsListRequest()
+      .then((response) => {
+        //setInstrumentsList(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    requestInstruments();
+  }, []);
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
+      <div className="card">Inicio</div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>

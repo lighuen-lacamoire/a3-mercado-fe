@@ -1,4 +1,7 @@
 type InstrumentRowDto = {
   id: number;
-  name: string;
+  codigo: string;
+  ultimoPrecio: number;
+  volumenAcumulado: number;
+  variacion: number;
 };
