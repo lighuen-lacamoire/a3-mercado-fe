@@ -1,0 +1,23 @@
+services:
+  application:
+    container_name: "mercado_web"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app/frontend # Bind local source files to container
+      - /app/frontend/node_modules # Ensure node_modules inside the container is preserved
+    #stdin_open: true
+    tty: true
+    environment:
+      - VITE_PORT=3000
+      - VITE_SKIP_CAPTCHA=true
+    env_file:
+      - .env.docker
+
+volumes:
+  node_modules: {}
+#Comando para levantarlo en docker
+#docker compose -f docker-compose.Production.yaml up -d --build --force-recreate
