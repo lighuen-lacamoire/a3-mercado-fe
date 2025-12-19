@@ -17,6 +17,8 @@ export default defineConfig(({ mode }: { mode: string; command: unknown }) => {
     {} as Record<string, string>,
   );
 
+  const appServer = `http://0.0.0.0:${appPort}`
+
   return {
     base: appBase,
     plugins: [react(), tsconfigPaths()],
@@ -26,16 +28,10 @@ export default defineConfig(({ mode }: { mode: string; command: unknown }) => {
       port: appPort,
       strictPort: true,
       host: true,
+  origin: appServer,
       open: appBase,
       watch: {
         usePolling: true,
-      },
-    },
-    proxy: {
-      "/api": {
-        target: env.VITE_BACKEND_API_BASEURL,
-        changeOrigin: true,
-        secure: false,
       },
     },
     build: {
