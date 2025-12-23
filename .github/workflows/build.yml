@@ -1,0 +1,53 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: React Build
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  ApplicationEnvironment: "test"
+  VITE_OPEN_AI_API_KEY: 3004
+
+# Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Single deploy job since we're just deploying
+  build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descarga del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalando NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "npm"
+
+      - name: Descargando las dependencias con NPM
+        run: npm install --legacy-peer-deps
+
+      - name: Realizando el Build de la App
+        run: npm run build:${{ env.ApplicationEnvironment }}

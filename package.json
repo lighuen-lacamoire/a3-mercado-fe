@@ -1,0 +1,49 @@
+{
+  "name": "mercadoweb",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "debug": "sh -ac '. ./.env.local; vite --port 3004 --mode development'",
+    "debug:development": "sh -ac '. ./.env.development; vite --port 3004 --mode development'",
+    "debug:test": "sh -ac '. ./.env.test; vite --port 3004 --mode development'",
+    "start": "serve -s -n -l 3004 build",
+    "start:dev": "vite build && vite --port 3004 --mode development",
+    "start:docker": "vite --port 3000 --host --mode development",
+    "build": "tsc -b && vite build",
+    "build:development": "tsc --noEmit && env-cmd -f ./.env.development vite build --mode development",
+    "build:test": "tsc --noEmit && env-cmd -f ./.env.test vite build --mode development",
+    "build:docker": "tsc --noEmit && env-cmd -f ./.env.docker vite build --mode development",
+    "lint": "eslint .",
+    "lint:format": "prettier --write src/",
+    "check:types": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "env-cmd": "^11.0.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "prettier": "^3.7.4",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.50.0",
+    "vite": "^7.3.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}
