@@ -3,7 +3,7 @@ services:
     container_name: "mercado_web"
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.Prod
     ports:
       - 3000:3000
     volumes:
@@ -14,6 +14,7 @@ services:
     environment:
       - VITE_PORT=3000
       - VITE_SKIP_CAPTCHA=true
+      - NODE_ENV=production
     env_file:
       - .env.docker
 

@@ -1,7 +1,14 @@
 type InstrumentRowDto = {
   id: number;
-  codigo: string;
-  ultimoPrecio: number;
-  volumenAcumulado: number;
-  variacion: number;
+  code: string;
+  lastPrice: number;
+  accumulatedVolume: number;
+  variation: number;
+};
+
+type InstrumentPriceDto = {
+  code: string;
+  price: number;
+  variation: number;
+  accumulatedVolume: number;
 };
